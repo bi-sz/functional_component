@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, TextInput } from 'react-native';
 
-export const SingleLineInput = (props)=>{
+export const MultiLineInput = (props)=>{
     const [focused, setFocused] = useState(false);
 
     return (
@@ -14,19 +14,23 @@ export const SingleLineInput = (props)=>{
             borderColor:focused ? 'black':'gray',
         }}>
             <TextInput
+                autoCapitalize='none'
                 autoCorrect={false}
-                autoCapitalize={false}
+                multiline
                 value={props.value}
                 onChangeText={props.onChangeText}
                 placeholder={props.placeholder}
-                onSubmitEditing={props.onSubmitEditing}
-                style={[props.style, { fontSize:props.fontSize ?? 20}]}
+                style={[props.style, { 
+                    fontSize:props.fontSize ?? 20, 
+                    height:props.height?? 200
+                }]}
                 onFocus={()=>{
                     setFocused(true);
                 }}
                 onBlur={()=>{
                     setFocused(false);
                 }}
+                onSubmitEditing={props.onSubmitEditing}
             />
         </View>
     )
